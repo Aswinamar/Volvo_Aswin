@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1623785063017' stop='1623785070940'>
+    <name>Volvo Test Validation</name>
+    <title>Volvo Test Validation</title>
+    <test-cases>
+        <test-case start='1623785063018' status='broken' stop='1623785070936'>
+            <name>Login Website</name>
+            <title>Login Website</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-91.0.4472.101'/>
+            </parameters>
+            <steps>
+                <step start='1623785063097' status='passed' stop='1623785070934'>
+                    <name>POST /session/:sessionId/url</name>
+                    <title>POST /session/:sessionId/url</title>
+                    <attachments>
+                        <attachment title='Request' source='dec1058a-6782-4b27-9151-dc67b964cf7d-attachment.json' type='application/json' size='38'/>
+                        <attachment title='Screenshot' source='55ed9bdc-997d-47f3-a876-f0eca2aa0983-attachment.png' type='image/png' size='51994'/>
+                    </attachments>
+                    <steps>
+                        <step start='1623785063145' status='passed' stop='1623785067120'>
+                            <name>GET /session/:sessionId/screenshot</name>
+                            <title>GET /session/:sessionId/screenshot</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                    </steps>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>lib.getTitle is not a function</message>
+                <stack-trace>TypeError: lib.getTitle is not a function
+                    at Context.&lt;anonymous> (E:\Volvo Latest Test\test\first.js:9:13)
+                    at async Context.executeAsync (E:\Volvo Latest Test\node_modules\@wdio\utils\build\shim.js:136:16)
+                    at async Context.testFrameworkFnWrapper (E:\Volvo Latest Test\node_modules\@wdio\utils\build\test-framework\testFnWrapper.js:52:18)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

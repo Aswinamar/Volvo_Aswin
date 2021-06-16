@@ -1,0 +1,62 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1623740603818' stop='1623740604165'>
+    <name>Volvo Test Validation</name>
+    <title>Volvo Test Validation</title>
+    <test-cases>
+        <test-case start='1623740603819' status='failed' stop='1623740604124'>
+            <name>Login Website</name>
+            <title>Login Website</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome-91.0.4472.101'/>
+            </parameters>
+            <steps>
+                <step start='1623740603939' status='failed' stop='1623740604124'>
+                    <name>POST /session/:sessionId/element</name>
+                    <title>POST /session/:sessionId/element</title>
+                    <attachments>
+                        <attachment title='Request' source='76064038-64ab-4dc8-a6e3-777bcaa1353f-attachment.json' type='application/json' size='78'/>
+                    </attachments>
+                    <steps>
+                        <step start='1623740603953' status='passed' stop='1623740604085'>
+                            <name>POST /session/:sessionId/url</name>
+                            <title>POST /session/:sessionId/url</title>
+                            <attachments>
+                                <attachment title='Request' source='8edd360c-16fa-4145-a0e8-e407f24f8be5-attachment.json' type='application/json' size='73'/>
+                                <attachment title='Response' source='7ed858ce-619d-49a8-9fd5-36eb06d1048b-attachment.json' type='application/json' size='1020'/>
+                            </attachments>
+                            <steps/>
+                        </step>
+                        <step start='1623740604117' status='failed' stop='1623740604124'>
+                            <name>GET /session/:sessionId/screenshot</name>
+                            <title>GET /session/:sessionId/screenshot</title>
+                            <attachments/>
+                            <steps/>
+                        </step>
+                    </steps>
+                </step>
+                <step start='1623740604128' status='undefined'>
+                    <name>POST /session/:sessionId/elements</name>
+                    <title>POST /session/:sessionId/elements</title>
+                    <attachments>
+                        <attachment title='Request' source='39bfd4c8-c35e-488b-a349-58d53b0e4159-attachment.json' type='application/json' size='78'/>
+                    </attachments>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <failure>
+                <message>Text matches: expected {} to equal 'Ideas that change the world are often the most controversial.'</message>
+                <stack-trace>AssertionError: Text matches: expected {} to equal 'Ideas that change the world are often the most controversial.'
+                    at Context.&lt;anonymous> (E:\Volvo Latest Test\test\First.js:9:15)
+                    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+                    at async Context.executeAsync (E:\Volvo Latest Test\node_modules\@wdio\utils\build\shim.js:136:16)
+                    at async Context.testFrameworkFnWrapper (E:\Volvo Latest Test\node_modules\@wdio\utils\build\test-framework\testFnWrapper.js:52:18)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
