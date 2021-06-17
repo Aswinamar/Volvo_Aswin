@@ -24,9 +24,8 @@ describe('Cars Validation',  ()=> {
 
         CT = await $(testObj1+'[1]');
         value = await CT.getText();
-        console.log(value+' and '+testValue[0]);
         assert.equal(value,testValue[0]);
-        console.log('step 5');
+        
 
 
         CT = await $(testObj1+'[2]');
