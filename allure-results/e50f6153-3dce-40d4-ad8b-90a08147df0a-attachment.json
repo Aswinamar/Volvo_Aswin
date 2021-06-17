@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": "//section[@data-autoid=\"ModelIntro\"]/h2"
-}

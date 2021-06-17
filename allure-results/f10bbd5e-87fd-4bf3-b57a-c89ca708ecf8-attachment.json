@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": "//button[@id=\"sitenav-v2-sidenav-toggle\"]"
-}

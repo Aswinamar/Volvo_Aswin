@@ -1,79 +1,38 @@
-exports.config = {
+const { join } = require('path');
 
-    //
-    // ====================
-    // Runner Configuration
-    // ====================
-    //
-    // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
-    // on a remote machine).
+exports.config = {
+   
     runner: 'local',
-    //
-    // ==================
-    // Specify Test Files
-    // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // from which `wdio` was called.
-    //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process simply enclose them in an array within the specs array.
-    //
-    // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
-    // then the current working directory is where your `package.json` resides, so `wdio`
-    // will be called from there.
+  
+    hostname: 'localhost',
+    port: 4444,
+    path: '/',
+   
     //
     specs: [
-        './test/first.js'
+        './test/*.js'
     ],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
     ],
-    //
-    // ============
-    // Capabilities
-    // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your capabilities you can overwrite the spec and exclude options in
-    // order to group specific specs to a specific capability.
-    //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
-    // files and you set maxInstances to 10, all spec files will get tested at the same time
-    // and 30 processes will get spawned. The property handles how many capabilities
-    // from the same test should run tests.
-    //
+    
     maxInstances: 10,
-    //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
-    // https://docs.saucelabs.com/reference/platforms-configurator
-    //
+    
     capabilities: [{
     
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
+        
+        maxInstances: 2,
         //
         browserName: 'chrome',
-        acceptInsecureCerts: true
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
+        acceptInsecureCerts: true,
+        'goog:chromeOptions': {
+            args: ['headless', 'disable-gpu','--disable-dev-shm-usage'],
+            
+          },
+        
     }],
-    //
-    // ===================
-    // Test Configurations
-    // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
-    //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    
     logLevel: 'info',
     //
     // Set specific log levels per logger
@@ -114,8 +73,33 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone'],
-    //services: ['chromedriver'],
+    services: ['docker',['image-comparison',
+    // The options
+    {
+        // Some options, see the docs for more
+        baselineFolder: join(process.cwd(), './TestData/images/'),
+        formatImageName: '{tag}-{logName}-{width}x{height}',
+        screenshotPath: join(process.cwd(), './TestData/images/'),
+        savePerInstance: true,
+        autoSaveBaseline: true,
+        blockOutStatusBar: true,
+        blockOutToolBar: true,
+        
+        
+        // Options for the tabbing image
+        tabbableOptions:{
+            circle:{
+                size: 18,
+                fontSize: 18,
+                // ...
+            },
+            line:{
+                color: '#ff221a', // hex-code or for example words like `red|black|green`
+                width: 3,
+            },
+        }
+        // ... more options
+    }],],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -137,11 +121,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec',['allure', {
-        outputDir: 'allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: true,
-    }]],
+    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
 
 
     
@@ -212,17 +192,8 @@ exports.config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    beforeTest: function (test, context) {
-        const chai =require('chai')
-        const chaiWebdriver=require('chai-webdriverio').default
-        chai.use(chaiWebdriver(browser))
-        global.assert = chai.assert
-        global.should = chai.should
-        global.expect = chai.expect
-
-
-
-     },
+    // beforeTest: function (test, context) {
+    // },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
